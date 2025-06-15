@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "matteroffice",
+  "version": "${version}",
+  "name": "MatterOffice",
+  "description": "",
+  "authors": [
+    "ProjectE but For Gabric."
+  ],
+  "contact": {
+    "repo": "https://github.com/rat/MatterOffice"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/matteroffice/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.tefyer.matteroffice.client.MatterOfficeClient"
+    ],
+    "main": [
+      "net.tefyer.matteroffice.MatterOffice"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
