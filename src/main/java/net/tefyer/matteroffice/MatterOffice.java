@@ -6,9 +6,12 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.tefyer.matteroffice.block.BlockRegistry;
+import net.tefyer.matteroffice.command.RebaseDatabase;
 import net.tefyer.matteroffice.command.SetEMCValue;
 import net.tefyer.matteroffice.config.EMCConfig;
 import net.tefyer.matteroffice.database.DataBase;
+import net.tefyer.matteroffice.items.ItemRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +31,9 @@ public class MatterOffice implements ModInitializer {
     public void onInitialize() {
         EMCConfig.init();
 
+        ItemRegistry.init();
+        BlockRegistry.init();
+
         registerCommands();
 
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
@@ -42,5 +48,6 @@ public class MatterOffice implements ModInitializer {
 
     private static void registerCommands(){
         CommandRegistrationCallback.EVENT.register(SetEMCValue::register);
+        CommandRegistrationCallback.EVENT.register(RebaseDatabase::register);
     }
 }

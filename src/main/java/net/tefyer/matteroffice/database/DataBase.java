@@ -9,16 +9,19 @@ public class DataBase {
     private Object2ObjectMap<String, Integer> VALUES = new Object2ObjectArrayMap<>();
 
     public boolean has(String name){
+        if(name.contains("minecraft:"))
+            name = name.replace("minecraft:", "");
         if(!VALUES.containsKey(name))
             return false;
         return get(name) != 0;
     }
-    public int get(String name){
-        return VALUES.get(name);
+    public int get(String n){
+        if(n.contains("minecraft:"))
+            n = n.replace("minecraft:", "");
+        System.out.println(n);
+        return VALUES.get(n);
     }
     public void add(String name, int matter_value){
-        if(!name.contains(":"))
-            name = "minecraft:"+name;
         VALUES.put(name,matter_value);
     }
 
@@ -30,5 +33,9 @@ public class DataBase {
     }
     public void add(Item item, int matter_value){
         add(Registries.ITEM.getId(item).toString(), matter_value);
+    }
+
+    public void reset() {
+        VALUES.clear();
     }
 }

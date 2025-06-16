@@ -77,9 +77,8 @@ public class FileUtils {
 
     private static String getName(Item item) {
         String name = Registries.ITEM.getId(item).toString();
-        if(!name.startsWith("minecraft:")){
-            name.replaceFirst("minecraft:","");
-        }
+        if(name.contains("minecraft:"))
+            name.replace("minecraft:", "");
         return name;
     }
 }

@@ -1,0 +1,22 @@
+{
+	"textures": {
+		"0": "matter_office:block/transmutation_stone/bottom",
+		"1": "matter_office:block/transmutation_stone/side",
+		"2": "matter_office:block/transmutation_stone/top",
+		"particle": "matter_office:block/transmutation_stone/bottom"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 3, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -23,4 +23,6 @@ public class ItemRegistry {
         // Return the registered item!
         return registeredItem;
     }
+
+    public static void init(){}
 }

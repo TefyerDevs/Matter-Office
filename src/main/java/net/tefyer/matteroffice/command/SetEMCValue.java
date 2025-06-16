@@ -20,7 +20,7 @@ public class SetEMCValue {
                                 CommandRegistryAccess commandRegistryAccess,
                                 CommandManager.RegistrationEnvironment registrationEnvironment) {
 
-        dispatcher.register(CommandManager.literal("set_emc").requires((source) -> source.hasPermissionLevel(2))
+        dispatcher.register(CommandManager.literal("setEmc").requires((source) -> source.hasPermissionLevel(2))
                 .then(CommandManager.argument("item",
                         ItemStackArgumentType.itemStack(commandRegistryAccess)).then(CommandManager.argument("emc", IntegerArgumentType.integer(0))
                         .executes(context -> execute(
