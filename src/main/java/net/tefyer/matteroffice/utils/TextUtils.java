@@ -22,6 +22,6 @@ public class TextUtils {
     }
 
     public static final Text stackedEmcText(ItemStack item, DataBase dataBase){
-        return twoColourString("STACKED EMC: ", formatter.format(dataBase.get(item.getItem())), Formatting.YELLOW, Formatting.WHITE);
+        return twoColourString("STACKED EMC: ", formatter.format((long) item.getCount() *dataBase.get(item.getItem())), Formatting.YELLOW, Formatting.WHITE);
     }
 }

@@ -3,13 +3,17 @@ package net.tefyer.matteroffice;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.tefyer.matteroffice.block.BlockEntityRegistry;
 import net.tefyer.matteroffice.block.BlockRegistry;
+import net.tefyer.matteroffice.client.menus.MenuRegistry;
 import net.tefyer.matteroffice.command.RebaseDatabase;
 import net.tefyer.matteroffice.command.SetEMCValue;
 import net.tefyer.matteroffice.config.EMCConfig;
+import net.tefyer.matteroffice.data.payload.EMCPayload;
 import net.tefyer.matteroffice.database.DataBase;
 import net.tefyer.matteroffice.items.ItemRegistry;
 import org.slf4j.Logger;
@@ -33,8 +37,13 @@ public class MatterOffice implements ModInitializer {
 
         ItemRegistry.init();
         BlockRegistry.init();
+        BlockEntityRegistry.init();
+        MenuRegistry.init();
 
         registerCommands();
+
+
+        PayloadTypeRegistry.playS2C().register(EMCPayload.ID, EMCPayload.CODEC);
 
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
             if(database.has(itemStack.getItem())){
