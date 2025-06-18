@@ -62,11 +62,6 @@ public class TransumationStoneScreen extends HandledScreen<TransumationStoneScre
     }
 
     @Override
-    protected void drawSlot(DrawContext context, Slot slot) {
-        super.drawSlot(context, slot);
-    }
-
-    @Override
     protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         context.drawText(textRenderer,title, titleX, titleY, 0x404040, false);
     }

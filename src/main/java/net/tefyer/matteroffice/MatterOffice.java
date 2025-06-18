@@ -7,13 +7,14 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.tefyer.matteroffice.block.BlockEntityRegistry;
 import net.tefyer.matteroffice.block.BlockRegistry;
 import net.tefyer.matteroffice.client.menus.MenuRegistry;
 import net.tefyer.matteroffice.command.RebaseDatabase;
 import net.tefyer.matteroffice.command.SetEMCValue;
 import net.tefyer.matteroffice.config.EMCConfig;
-import net.tefyer.matteroffice.data.payload.EMCPayload;
+import net.tefyer.matteroffice.data.ModMessages;
 import net.tefyer.matteroffice.database.DataBase;
 import net.tefyer.matteroffice.items.ItemRegistry;
 import org.slf4j.Logger;
@@ -33,6 +34,7 @@ public class MatterOffice implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ModMessages.registerPackets();
         EMCConfig.init();
 
         ItemRegistry.init();
@@ -43,8 +45,6 @@ public class MatterOffice implements ModInitializer {
         registerCommands();
 
 
-        PayloadTypeRegistry.playS2C().register(EMCPayload.ID, EMCPayload.CODEC);
-
         ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
             if(database.has(itemStack.getItem())){
                 list.add(emcText(itemStack, database));
@@ -53,6 +53,12 @@ public class MatterOffice implements ModInitializer {
                 }
             }
         });
+
+        ModMessages.registerC2SPacket();
+    }
+
+    public static Identifier id(String id){
+        return Identifier.of(MOD_ID,id);
     }
 
     private static void registerCommands(){

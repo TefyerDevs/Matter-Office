@@ -10,7 +10,8 @@ import net.minecraft.text.Text;
 import net.tefyer.matteroffice.client.menus.MenuRegistry;
 import net.tefyer.matteroffice.client.screen.TransumationStoneScreen;
 import net.tefyer.matteroffice.client.screen.hud.EMCHudOverlay;
-import net.tefyer.matteroffice.data.payload.EMCPayload;
+import net.tefyer.matteroffice.data.ModMessages;
+import net.tefyer.matteroffice.data.emc.EMCPayload;
 
 public class MatterOfficeClient implements ClientModInitializer {
     private static void handleDirtBrokenPayload(EMCPayload payload, ClientPlayNetworking.Context context) {
@@ -22,5 +23,7 @@ public class MatterOfficeClient implements ClientModInitializer {
         ClientPlayNetworking.registerGlobalReceiver(EMCPayload.ID, MatterOfficeClient::handleDirtBrokenPayload);
 
         HudRenderCallback.EVENT.register(new EMCHudOverlay());
+
+        ModMessages.registerS2CPacket();
     }
 }
